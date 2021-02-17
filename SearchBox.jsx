@@ -2,6 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
+//USAGE: pass a list, a value to filter for and a callback function
 export default function SearchBox(props) {
   return (
     <div style={{ width: 300 }}>

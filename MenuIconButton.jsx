@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar, Badge, IconButton, withStyles } from "@material-ui/core";
 
+//USAGE: pass selected, notify, disabled and an onClick callback
 const MenuIconButton = (props) => {
   const StyledBadge = withStyles((theme) => ({
     badge: {
