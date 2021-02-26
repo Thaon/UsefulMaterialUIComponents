@@ -15,6 +15,8 @@ import Copyright from "./Copyright";
 
 import ops from "../operations";
 
+import LoadingDialog from "./LoadingDialog";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -41,10 +43,12 @@ export default function SignIn(props) {
   //login
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [logging, setLogging] = useState(false);
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <LoadingDialog open={logging} title="Logging In" text="Please wait" />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -57,6 +61,7 @@ export default function SignIn(props) {
           noValidate
           onSubmit={async (e) => {
             e.preventDefault();
+            setLogging(true);
             let res = await ops.login(username, password);
             switch (res.state) {
               case "auth":
@@ -67,6 +72,7 @@ export default function SignIn(props) {
                 props.onFailure();
                 setUsername("");
                 setPassword("");
+                setLogging(false);
                 break;
             }
           }}
